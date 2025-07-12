@@ -176,6 +176,7 @@ body.light-theme .change-theme {
   position: fixed;
   background: var(--body-color);
   z-index: var(--z-fixed);
+  margin-bottom: -5rem;
 }
 
 .nav {
@@ -226,10 +227,14 @@ body.light-theme .change-theme {
 }
 
 /*=============== HOME ===============*/
+.home {
+  margin-top: -5rem;
+  height: 40%;
+}
 .home-container {
   position: relative;
-  padding-top: 32px;
   row-gap: 4.5rem;
+  height: 50%;
 }
 .home-data {
   text-align: center;

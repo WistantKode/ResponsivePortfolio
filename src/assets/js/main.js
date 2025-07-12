@@ -84,15 +84,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.addEventListener('scroll', scrollUp)
 
-    /*=============== DARK LIGHT THEME (Refactored) ===============*/
-const themeswitch = document.querySelector('.change-theme')
-const body = document.querySelector('body')
+    /*=============== DARK LIGHT THEME ===============*/
+    const themeButton = document.getElementById('theme-button');
+    const body = document.body;
+    const lightThemeClass = 'light-theme';
+    const sunIconClass = 'bx-sun';
+    const moonIconClass = 'bx-moon';
 
-themeswitch.addEventListener('click', () => {
-    themeswitch.classList.toggle('bx-moon')
-    body.classList.toggle('light-theme')
-    themeswitch.classList.toggle('bx-sun')
-})
+    // Fonction pour appliquer les bonnes classes en fonction du thème ('light' ou 'dark')
+    const applyTheme = (theme) => {
+        if (theme === 'light') {
+            body.classList.add(lightThemeClass);
+            themeButton.classList.remove(moonIconClass);
+            themeButton.classList.add(sunIconClass);
+        } else { // 'dark'
+            body.classList.remove(lightThemeClass);
+            themeButton.classList.remove(sunIconClass);
+            themeButton.classList.add(moonIconClass);
+        }
+    };
+
+    // Fonction pour obtenir le thème actuel à partir de la classe du body
+    const getCurrentTheme = () => {
+        return body.classList.contains(lightThemeClass) ? 'light' : 'dark';
+    };
+
+    // Au chargement de la page, on vérifie s'il y a un thème sauvegardé
+    const savedTheme = localStorage.getItem('selected-theme');
+
+    if (savedTheme) {
+        applyTheme(savedTheme); // Si oui, on l'applique
+    } else {
+        applyTheme('light'); // Sinon, on met le thème clair par défaut
+    }
+
+    // On ajoute l'écouteur d'événement sur le bouton
+    themeButton.addEventListener('click', () => {
+        const newTheme = getCurrentTheme() === 'light' ? 'dark' : 'light';
+        applyTheme(newTheme);
+        localStorage.setItem('selected-theme', newTheme);
+    });
+
     /*=============== SCROLL REVEAL ANIMATION ===============*/
     const sr = ScrollReveal({
         origin: 'top',
