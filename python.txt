@@ -1,0 +1,134 @@
+**Understanding the `push_to_github.py` Script**
+
+This Python script is a small tool designed to automate the process of sending your code changes to GitHub. Instead of typing three separate Git commands every time, you can just run this script.
+
+Let's break down how it works, piece by piece.
+
+**1. The Imports**
+
+```python
+import subprocess
+import sys
+```
+
+*   `import subprocess`: This line imports a built-in Python library that allows the script to run other programs or commands on your computer. In this case, it's used to run Git commands like `git add`, `git commit`, and `git push`.
+*   `import sys`: This library provides access to system-specific parameters and functions. Here, it's used for one specific purpose: to stop the script (`sys.exit(1)`) if a command fails.
+
+**2. The `run_command` Function**
+
+```python
+def run_command(command):
+    # ... function code ...
+```
+
+This is a helper function created to make the script cleaner and more robust. Its job is to take a command (as a string, like `"git add ."`), execute it, and check for errors.
+
+*   `try...except`: This is Python's way of handling potential errors. The code inside the `try` block is executed. If an error occurs, the code inside the `except` block is run instead of crashing the program.
+*   `subprocess.run(...)`: This is the core of the function. It runs the command you give it.
+    *   `check=True`: This is important. It tells `subprocess` to automatically raise an error if the command fails (e.g., if `git push` is rejected).
+    *   `shell=True`: This allows us to pass the command as a simple string.
+    *   `text=True, capture_output=True`: These tell the function to capture any messages the command prints out so we can display them.
+*   If an error happens, the `except` block prints detailed error messages and then `sys.exit(1)` stops the script immediately. This prevents the script from trying to run the next command if a previous one failed.
+
+**3. The `main` Function**
+
+```python
+def main():
+    # ... function code ...
+```
+
+This is the primary function that contains the main logic of the script.
+
+*   `commit_message = input(...)`: This line displays a message on the screen asking you to type a commit message and then waits for your input.
+*   `if not commit_message:`: This checks if you just pressed Enter without typing anything. If so, it assigns a default message to the `commit_message` variable.
+*   `print(...)` and `run_command(...)`: The rest of the function is a sequence of steps. For each step, it first prints a message to tell you what it's doing (e.g., "--- Adding files to stage... ---") and then calls our `run_command` helper to execute the actual Git command.
+    1.  `run_command("git add .")`: Adds all new and modified files.
+    2.  `run_command(f'git commit -m "{commit_message}"')`: Commits the added files with the message you provided.
+    3.  `run_command("git push origin main")`: Pushes your commit to the `main` branch on GitHub.
+
+**4. The Entry Point**
+
+```python
+if __name__ == "__main__":
+    main()
+```
+
+This is a standard convention in Python. It's a check that says: "If this script is being run directly (and not imported as a module into another script), then execute the `main()` function." This is what makes the script start when you type `python3 push_to_github.py` in your terminal.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------
+
+
+**Comprendre le script `push_to_github.py`**
+
+Ce script Python est un petit outil conçu pour automatiser le processus d'envoi de vos modifications de code vers GitHub. Au lieu de taper trois commandes Git distinctes à chaque fois, vous pouvez simplement exécuter ce script.
+
+Analysons son fonctionnement, pièce par pièce.
+
+**1. Les Importations**
+
+```python
+import subprocess
+import sys
+```
+
+*   `import subprocess` : Cette ligne importe une bibliothèque intégrée à Python qui permet au script d'exécuter d'autres programmes ou commandes sur votre ordinateur. Dans ce cas, elle est utilisée pour lancer des commandes Git comme `git add`, `git commit`, et `git push`.
+*   `import sys` : Cette bibliothèque donne accès à des fonctions et paramètres spécifiques au système. Ici, elle est utilisée dans un but précis : arrêter le script (`sys.exit(1)`) si une commande échoue.
+
+**2. La Fonction `run_command`**
+
+```python
+def run_command(command):
+    # ... code de la fonction ...
+```
+
+C'est une fonction "aide" créée pour rendre le script plus propre et plus robuste. Son rôle est de prendre une commande (sous forme de chaîne de caractères, comme `"git add ."`), de l'exécuter et de vérifier les erreurs.
+
+*   `try...except` : C'est la manière de Python de gérer les erreurs potentielles. Le code dans le bloc `try` est exécuté. Si une erreur se produit, le code dans le bloc `except` est exécuté à la place, ce qui évite que le programme ne plante.
+*   `subprocess.run(...)` : C'est le cœur de la fonction. Elle exécute la commande que vous lui donnez.
+    *   `check=True` : C'est important. Cela indique à `subprocess` de déclencher automatiquement une erreur si la commande échoue (par exemple, si `git push` est rejeté).
+    *   `shell=True` : Cela nous permet de passer la commande comme une simple chaîne de caractères.
+    *   `text=True, capture_output=True` : Ces options indiquent à la fonction de capturer tous les messages que la commande affiche afin que nous puissions les montrer.
+*   Si une erreur se produit, le bloc `except` affiche des messages d'erreur détaillés, puis `sys.exit(1)` arrête le script immédiatement. Cela empêche le script d'essayer d'exécuter la commande suivante si une précédente a échoué.
+
+**3. La Fonction `main`**
+
+```python
+def main():
+    # ... code de la fonction ...
+```
+
+C'est la fonction principale qui contient la logique du script.
+
+*   `commit_message = input(...)` : Cette ligne affiche un message à l'écran vous demandant de taper un message de commit, puis attend votre saisie.
+*   `if not commit_message:` : Cela vérifie si vous avez simplement appuyé sur Entrée sans rien taper. Si c'est le cas, elle assigne un message par défaut à la variable `commit_message`.
+*   `print(...)` et `run_command(...)` : Le reste de la fonction est une séquence d'étapes. Pour chaque étape, elle affiche d'abord un message pour vous dire ce qu'elle fait (ex: "--- Ajout des fichiers au stage... ---"), puis elle appelle notre fonction `run_command` pour exécuter la commande Git réelle.
+    1.  `run_command("git add .")` : Ajoute tous les fichiers nouveaux et modifiés.
+    2.  `run_command(f'git commit -m "{commit_message}"')` : Fait un commit des fichiers ajoutés avec le message que vous avez fourni.
+    3.  `run_command("git push origin main")` : Pousse votre commit vers la branche `main` sur GitHub.
+
+**4. Le Point d'Entrée**
+
+```python
+if __name__ == "__main__":
+    main()
+```
+
+C'est une convention standard en Python. C'est une vérification qui dit : "Si ce script est exécuté directement (et non importé comme un module dans un autre script), alors exécute la fonction `main()`." C'est ce qui fait démarrer le script lorsque vous tapez `python3 push_to_github.py` dans votre terminal.
