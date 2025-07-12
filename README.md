@@ -1,21 +1,23 @@
 # ResponsivePortfolio
 
-![Aperçu du Portfolio](./home.png)
+![Aperçu de la page d'accueil du portfolio](./src/home.png)
+[](./src/about.png)
+[](./src/contact_testimonial.png)
 
 This project is a responsive portfolio designed to showcase my work as a creative frontend developer. It highlights my skills, projects, and services.
 
 ## Overview
 
-The portfolio includes the following sections:
+The portfolio is built with a clean and modern user interface, featuring several key sections to present my profile and work effectively.
 
-*   **Accueil (Home) :** Présentation avec photo, nom, titre, boutons d'appel à l'action (CV, "En savoir plus") et liens vers les réseaux sociaux.
-*   **À propos (About) :**  Présentation plus détaillée, expérience, nombre de projets réalisés et disponibilité.
-*   **Compétences (Skills) :**  Liste des compétences frontend et backend avec niveau de maîtrise (débutant, intermédiaire, avancé).
-*   **Services :**  Description des prestations proposées (Product Designer, UI/UX Designer, Développement Web Complet). Chaque service a une modal avec plus de détails.
-*   **Portfolio (Work) :** Galerie des projets récents avec filtres par catégorie (Statiques, Fullstack, Mobile).
-*   **Témoignages (Testimonial) :** Section to display client testimonials (to be completed).
-*   **Contact :**  Informations de contact (email, WhatsApp, Telegram) et formulaire de contact.
-*   **Pied de page (Footer) :**  Liens vers les sections principales, réseaux sociaux et mention de copyright.
+
+The portfolio also includes:
+
+*   **Home:** A welcoming introduction with a profile picture, title, and call-to-action buttons.
+*   **About:** A more detailed presentation of my experience and skills.
+*   **Skills:** A list of my frontend and backend skills with proficiency levels.
+*   **Testimonial:** A carousel to display client feedback.
+*   **Footer:** Quick links to main sections and social media profiles.
 
 ## Technologies Used
 
